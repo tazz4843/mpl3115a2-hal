@@ -1,9 +1,6 @@
-This is an embedded-hal device driver for the MPL3115A2 Altitude sensor. 
+# mpl3115a2-hal
 
-It is accurate to around 0.3m. 
+Device driver for the MPL3115A2 pressure sensor using the embedded-hal traits.
 
-There is also a temperature and pressure readings avaliable.
-
-See the example for usage
-
-The pressure mode is likely wildly inaccurate and needs to be tested against a known good pressure sensor.
+Enable either async or blocking support with the `async` or `blocking` features respectively.
+You cannot use both at the same time, due to the way they're implemented using the same functions.
