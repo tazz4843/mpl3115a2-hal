@@ -1,8 +1,8 @@
 [package]
-name = "mpl3115"
+name = "mpl3115a2-hal"
 version = "0.1.0"
-authors = ["Tristan Lostroh <tl8roy@gmail.com>"]
-edition = "2018"
+authors = ["Tristan Lostroh <tl8roy@gmail.com>", "Niko <niko@niko.lgbt>"]
+edition = "2021"
 
 license = "MIT"
 description = "Platform-agnostic Rust driver for the MLP3115 pressure sensor."
@@ -10,12 +10,18 @@ readme = "README.md"
 keywords = ["pressure", "altitude", "i2c", "driver", "embedded-hal-driver"]
 categories = ["embedded", "hardware-support", "no-std"]
 
+[features]
+default = ["blocking"]
+async = ["dep:embedded-hal-async"]
+blocking = ["dep:embedded-hal"]
+
 [dependencies]
-embedded-hal = "0.2"
+embedded-hal = { version = "1.0.0-rc.1", optional = true }
+embedded-hal-async = { version = "1.0.0-rc.1", optional = true }
 
 [dependencies.cast]
 default-features = false
-version = "0.2"
+version = "0.3"
 
 [profile.release]
 lto = true

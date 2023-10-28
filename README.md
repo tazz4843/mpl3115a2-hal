@@ -4,4 +4,6 @@ It is accurate to around 0.3m.
 
 There is also a temperature and pressure readings avaliable.
 
-See the example for usage The pressure mode is likely wildly inaccurate and needs to be tested against a known good pressure sensor.
+See the example for usage
+
+The pressure mode is likely wildly inaccurate and needs to be tested against a known good pressure sensor.
