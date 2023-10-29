@@ -25,8 +25,7 @@ pub struct MPL3115A2<I2C> {
 #[cfg(feature = "blocking")]
 impl<I2C, E> MPL3115A2<I2C>
 where
-    I2C: I2c<SevenBitAddress, Error = Error<E>>,
-    E: From<Error<E>>,
+    I2C: I2c<SevenBitAddress, Error = E>,
 {
     /// Create a new `MPL3115A2` driver from the given `I2C` peripheral
     pub fn new(i2c: I2C, pa: PressureAlt) -> Result<Self, Error<E>> {
@@ -257,12 +256,12 @@ where
 
     #[inline]
     fn read_regs(&mut self, reg: Register, buffer: &mut [u8]) -> Result<(), E> {
-        Ok(self.i2c.write_read(I2C_SAD, &[reg.addr()], buffer)?)
+        self.i2c.write_read(I2C_SAD, &[reg.addr()], buffer)
     }
 
     #[inline]
     fn write_reg(&mut self, reg: Register, val: u8) -> Result<(), E> {
-        Ok(self.i2c.write(I2C_SAD, &[reg.addr(), val])?)
+        self.i2c.write(I2C_SAD, &[reg.addr(), val])
     }
 
     #[inline]
@@ -299,8 +298,7 @@ where
 #[cfg(feature = "async")]
 impl<I2C, E> MPL3115A2<I2C>
 where
-    I2C: AsyncI2c<SevenBitAddress, Error = Error<E>>,
-    E: From<Error<E>>,
+    I2C: AsyncI2c<SevenBitAddress, Error = E>,
 {
     /// Create a new `MPL3115A2` driver from the given `I2C` peripheral
     pub async fn new(i2c: I2C, pa: PressureAlt) -> Result<Self, Error<E>> {
@@ -546,12 +544,12 @@ where
 
     #[inline]
     async fn read_regs(&mut self, reg: Register, buffer: &mut [u8]) -> Result<(), E> {
-        Ok(self.i2c.write_read(I2C_SAD, &[reg.addr()], buffer).await?)
+        self.i2c.write_read(I2C_SAD, &[reg.addr()], buffer).await
     }
 
     #[inline]
     async fn write_reg(&mut self, reg: Register, val: u8) -> Result<(), E> {
-        Ok(self.i2c.write(I2C_SAD, &[reg.addr(), val]).await?)
+        self.i2c.write(I2C_SAD, &[reg.addr(), val]).await
     }
 
     #[inline]
