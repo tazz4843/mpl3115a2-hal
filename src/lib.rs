@@ -27,7 +27,7 @@ pub enum Mode {
     TakingReading,
 }
 
-/// Pressure or Altitude Mode
+/// Pressure or Altitude Mode   
 ///
 /// Toggle as required
 #[derive(Copy, Clone, PartialEq)]
